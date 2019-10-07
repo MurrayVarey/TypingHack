@@ -2,24 +2,25 @@
 <html>
 <body>
 
-<h1>Typewriter</h1>
+<h1>Copy Cat</h1>
 
-<button onclick="typeWriter()">Click Me</button>
+<div class="container">
+  <form>
+    <label for="typingArea">Type Here</label>
+    <input type="text" id="typingArea" name="typingArea" required>
+  </form>
+</div>
 
-<p id="demo"></p>
+<p id="writingArea"></p>
 
 <script>
-var i = 0;
-var txt = 'Hello, World! What a pleasure to meet you!';
+var typingInput = document.getElementById("typingArea");
 
-function typeWriter() {
-  if (i < txt.length) {
-    document.getElementById("demo").innerHTML += txt.charAt(i);
-    i++;
-    var speed = Math.floor(Math.random() * 100);
-    setTimeout(typeWriter, speed);
-  }
+typingArea.onkeyup = function()
+{
+    document.getElementById("writingArea").innerHTML = typingArea.value;
 }
+
 </script>
 
 </body>
