@@ -4,14 +4,18 @@
 
 <h1>Copy Cat</h1>
 
-<div class="container">
+<div class="typingContainer">
   <form>
     <label for="typingArea">Type Here</label>
     <input type="text" id="typingArea" name="typingArea" required>
   </form>
+  <p id="writingArea"></p>
 </div>
 
-<p id="writingArea"></p>
+<div class="timerContainer">
+  <button onclick="startTimer()">Start Timer</button>
+  <p id="timerText"></p>
+</div>
 
 <script>
 var typingInput = document.getElementById("typingArea");
@@ -19,6 +23,34 @@ var typingInput = document.getElementById("typingArea");
 typingArea.onkeyup = function()
 {
     document.getElementById("writingArea").innerHTML = typingArea.value;
+}
+
+var countDownTime = 60;
+
+function startTimer()
+{
+  var start = Date.now(); 
+  var diff; 
+  var seconds;
+
+  function countdown()
+  {
+    // | 0 converts to integer. Try parseInt()?
+    diff = 15 - (((Date.now() - start) / 1000) | 0);
+
+    seconds = (diff % 60) | 0;
+
+    if (seconds < 0)
+    {
+      seconds = 0;
+    }
+
+    document.getElementById("timerText").innerHTML = seconds + "s";
+  }
+
+  countdown();
+  setInterval(countdown, 1000);
+  
 }
 
 </script>
