@@ -2,41 +2,56 @@
 <html>
 <body>
 
-<h1>Copy Cat</h1>
+<h1>Typing Blitz</h1>
 
 <div class="typingContainer">
   <form>
     <label for="typingArea">Type Here</label>
     <input type="text" id="typingArea" name="typingArea" required>
   </form>
-  <p id="writingArea"></p>
+  <p id="writingArea">Hint: Use Ctrl + Delete to delete whole words!</p>
 </div>
 
 <div class="timerContainer">
-  <button onclick="startTimer()">Start Timer</button>
+  <button onclick="onStartGame()">Start Game</button>
   <p id="timerText"></p>
 </div>
 
 <script>
 var typingInput = document.getElementById("typingArea");
 
+var score = 0;
 typingArea.onkeyup = function()
 {
-    document.getElementById("writingArea").innerHTML = typingArea.value;
 }
 
-var countDownTime = 60;
+function initGame()
+{
+  score = 0;
+  var text = document.getElementById("typingArea");
+  text.value = "";
 
-function startTimer()
+  var i;
+  for (i = 0; i < 1000; ++i)
+  {
+    text.value += "Baddie ";
+  }
+}
+
+var countDownTime = 15;
+
+function onStartGame()
 {
   var start = Date.now(); 
   var diff; 
   var seconds;
 
+  initGame();
+
   function countdown()
   {
     // | 0 converts to integer. Try parseInt()?
-    diff = 15 - (((Date.now() - start) / 1000) | 0);
+    diff = countDownTime - (((Date.now() - start) / 1000) | 0);
 
     seconds = (diff % 60) | 0;
 
