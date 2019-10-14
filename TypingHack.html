@@ -10,6 +10,7 @@
     <input type="text" id="typingArea" name="typingArea" required>
   </form>
   <p id="writingArea">Hint: Use Ctrl + Delete to delete whole words!</p>
+  <p id="scoreArea">Score: 0</p>
 </div>
 
 <div class="timerContainer">
@@ -23,6 +24,8 @@ var typingInput = document.getElementById("typingArea");
 var score = 0;
 typingArea.onkeyup = function()
 {
+  ++score;
+  document.getElementById("scoreArea").innerHTML = "Score: " + score;
 }
 
 function initGame()
