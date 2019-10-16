@@ -27,28 +27,34 @@ var granString = "Gran";
 
 var startingBaddieCount = 1000;
 var startingGranCount = 500;
-var previousBaddieCount = startingBaddieCount;
 
 var score = 0;
 typingArea.onkeyup = function()
 { 
-  var baddieCount = getBaddieCount();
-  if (baddieCount < previousBaddieCount)
-  {
-    ++score;
-    previousBaddieCount = baddieCount;
-  }
-  
+  var baddiesGone = startingBaddieCount - getBaddieCount();
+  var gransGone = startingGranCount - getGranCount();
+  score = baddiesGone - 5 * gransGone;
+    
   document.getElementById("scoreArea").innerHTML = "Score: " + score;
 }
 
 function getBaddieCount()
 {
+  return getCharacterCount(baddieString);
+}
+
+function getGranCount()
+{
+  return getCharacterCount(granString);
+}
+
+function getCharacterCount(characterString)
+{
   var count = 0;
   var tokens = document.getElementById("typingArea").value.split(" ");
   for(var iToken = 0; iToken < tokens.length; ++iToken)
   {
-    if (tokens[iToken] == baddieString)
+    if (tokens[iToken] == characterString)
     {
       ++count;
     }
