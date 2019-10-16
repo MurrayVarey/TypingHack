@@ -21,11 +21,34 @@
 <script>
 var typingInput = document.getElementById("typingArea");
 
+var startingBaddieCount = 1000;
+var previousBaddieCount = startingBaddieCount;
+
 var score = 0;
 typingArea.onkeyup = function()
-{
-  ++score;
+{ 
+  var baddieCount = getBaddieCount();
+  if (baddieCount < previousBaddieCount)
+  {
+    ++score;
+    previousBaddieCount = baddieCount;
+  }
+  
   document.getElementById("scoreArea").innerHTML = "Score: " + score;
+}
+
+function getBaddieCount()
+{
+  var count = 0;
+  var tokens = document.getElementById("typingArea").value.split(" ");
+  for(var iToken = 0; iToken < tokens.length; ++iToken)
+  {
+    if (tokens[iToken] == "Baddie")
+    {
+      ++count;
+    }
+  }
+  return count;
 }
 
 function initGame()
@@ -35,7 +58,7 @@ function initGame()
   text.value = "";
 
   var i;
-  for (i = 0; i < 1000; ++i)
+  for (i = 0; i < startingBaddieCount; ++i)
   {
     text.value += "Baddie ";
   }
