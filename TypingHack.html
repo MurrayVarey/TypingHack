@@ -9,6 +9,7 @@
     <label for="typingArea">Type Here</label>
     <input type="text" id="typingArea" name="typingArea" required>
   </form>
+  <p>Delete the baddies. Don't get Gran!</p>
   <p id="writingArea">Hint: Use Ctrl + Delete to delete whole words!</p>
   <p id="scoreArea">Score: 0</p>
 </div>
@@ -21,7 +22,11 @@
 <script>
 var typingInput = document.getElementById("typingArea");
 
+var baddieString = "Baddie";
+var granString = "Gran";
+
 var startingBaddieCount = 1000;
+var startingGranCount = 500;
 var previousBaddieCount = startingBaddieCount;
 
 var score = 0;
@@ -43,7 +48,7 @@ function getBaddieCount()
   var tokens = document.getElementById("typingArea").value.split(" ");
   for(var iToken = 0; iToken < tokens.length; ++iToken)
   {
-    if (tokens[iToken] == "Baddie")
+    if (tokens[iToken] == baddieString)
     {
       ++count;
     }
@@ -57,10 +62,17 @@ function initGame()
   var text = document.getElementById("typingArea");
   text.value = "";
 
-  var i;
-  for (i = 0; i < startingBaddieCount; ++i)
+  var totalCharacters = startingBaddieCount + startingGranCount;
+  for (var i = 0; i < totalCharacters; ++i)
   {
-    text.value += "Baddie";
+    if ((i % 3) == 2)
+    {
+      text.value += granString;
+    }
+    else
+    {
+      text.value += baddieString;
+    }
 
     // Add random number of spaces to create a scrolling effect of the text.
     var nSpaces = 1 + Math.floor(Math.random() * 8);
