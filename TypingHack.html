@@ -60,7 +60,14 @@ function initGame()
   var i;
   for (i = 0; i < startingBaddieCount; ++i)
   {
-    text.value += "Baddie ";
+    text.value += "Baddie";
+
+    // Add random number of spaces to create a scrolling effect of the text.
+    var nSpaces = 1 + Math.floor(Math.random() * 8);
+    for (var iSpace = 0; iSpace < nSpaces; ++iSpace)
+    {
+      text.value += " ";
+    }
   }
 }
 
